@@ -8,7 +8,7 @@ var Customer = function (name) {
 var MealItems = function(name, price, taxes) {
     this.name = name;
     this.price = price;
-    this.taxes = this.price * .05;
+    this.taxes = (this.price * .05).toFixed(2);
 }
 
 var viewBill = function() {
@@ -26,7 +26,7 @@ Customer.prototype.subtotal = function() {
     for (i = 0; i < this.items.length; i++) {
         sum = sum + this.items[i].price;
     }
-    return sum;
+    return sum.toFixed(2);
 }
 
 Customer.prototype.taxes = function() {
@@ -79,37 +79,35 @@ console.log("Finally, for " + c3.name + ", the following items were ordered: " +
 console.log("The cost for these items are $" + c3.items[0].price + " and $" + c3.items[1].price + " respectively.");
 */
 
-var diners = {
-    diner1 : {
-        name: "The Orange & Brew Steakhouse",
-        dish: {
-            name: "New York Prime Rib",
-            price: "$34.95"
-        }
-    },
-    item1: {
-        dish: "New York Prime Rib",
-        price: "$34.95"
-    },
-    item2: {
-        dish: "Roasted Chicken",
-        price: "$17.95"
-    },
-    item3: {
-        dish: "Roasted Chicken",
-        price: "$17.95"
-    }
-}
-
 $(document).ready(function() {
-    var Diners = ["The Orange & Brew Steakhouse", "The Singing Gator", "Heisman Bar"];
-    var Dishes = {
-        obs: ["New York Prime Rib", "Roasted Chicken", "Red Snapper"],
-        tsg: ["BBQ Burger", "Chicken Parmigiana", "Apple Walnut Salad"],
-        hb: ["Nachos w/Queso Dip", "Popcorn Shrimp", "Chicken Fingers"]
-    }
 
     function checkout() {
-
+        console.log("Hello! Please see your bill breakdown below:");
+        console.log("");
+        console.log("Bill for: " + c1.name + "");
+        console.log("   " + c1.items[0].name + " - " + c1.items[0].price + "");
+        console.log("   " + c1.items[1].name + " - " + c1.items[1].price + "");
+        console.log("_______________________");
+        console.log("Subtotal: " + c1.subtotal() + "");
+        console.log("Taxes: ");
+        console.log("Total: ");
+        console.log("");
+        console.log("Bill for: " + c2.name + "");
+        console.log("   " + c2.items[0].name + " - " + c2.items[0].price + "");
+        console.log("   " + c2.items[1].name + " - " + c2.items[1].price + "");
+        console.log("_______________________");
+        console.log("Subtotal: " + c2.subtotal() + "");
+        console.log("Taxes: ");
+        console.log("Total: ");
+        console.log("");
+        console.log("Bill for: " + c3.name + "");
+        console.log("   " + c3.items[0].name + " - " + c3.items[0].price + "");
+        console.log("   " + c3.items[1].name + " - " + c3.items[1].price + "");
+        console.log("_______________________");
+        console.log("Subtotal: " + c3.subtotal() + "");
+        console.log("Taxes: ");
+        console.log("Total: ");
     };
+
+    checkout();
 });

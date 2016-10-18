@@ -5,9 +5,10 @@ var Customer = function (name) {
     this.tax = 0;
 }
 
-var MealItems = function(name, price) {
+var MealItems = function(name, price, taxes) {
     this.name = name;
     this.price = price;
+    this.taxes = this.price * .05;
 }
 
 var viewBill = function() {

@@ -2,14 +2,14 @@
 var Customer = function (name) {
     this.name = name;
     this.items = [];
-    //this.tax = 0;
+    this.tip = 0;
+    this.cost = 0;
 }
 
 var MealItems = function(name, price, taxes) {
     this.name = name;
     this.price = price;
     this.taxes = parseFloat((this.price * .05).toFixed(2));
-    //this.taxes = (this.price * .05).toFixed(2);
 }
 
 var viewBill = function() {
@@ -43,6 +43,14 @@ Customer.prototype.tax = function() {
 }
 
 Customer.prototype.tips = function() {
+    var totalTip = 0;
+    var totalCost = 0;
+    for (i = 0; i < this.items.length; i++) {
+        totalCost += this.items[i].price;
+    }
+    totalTip = parseFloat((totalCost * .20).toFixed(2));
+    this.tip += totalTip;
+    return totalTip;
 
 }
 
@@ -50,12 +58,14 @@ Customer.prototype.total = function() {
     var totalCost = 0;
     var foodCost = 0;
     var foodTax = 0;
+    var foodTip = 0;
     for (i = 0; i < this.items.length; i++) {
         foodCost = foodCost + this.items[i].price;
         foodTax = foodTax + this.items[i].taxes;
     }
-    totalCost = foodCost + foodTax;
-    return totalCost;
+    foodTip = this.tip;
+    totalCost = foodCost + foodTax + foodTip;
+    return totalCost.toFixed(2);
 }
 
 Customer.prototype.totalDishes = function() {
@@ -89,6 +99,10 @@ c1.add(m4);
 c2.add(m5);
 c3.add(m6);
 
+c1.tips();
+c2.tips();
+c3.tips();
+
 /*console.log("Tonight, we have diners: " + c1.name + ", " + c2.name + " and " + c3.name + ".");
 console.log("For " + c1.name + ", the following items were ordered: " + c1.items[0].name + " and " + c1.items[1].name + ".");
 console.log("The cost for these items are $" + c1.items[0].price + " and $" + c1.items[1].price + " respectively.");
@@ -109,7 +123,8 @@ $(document).ready(function() {
         console.log("_______________________");
         console.log("Subtotal: " + c1.subtotal() + "");
         console.log("Taxes: " + c1.tax() + "");
-        console.log("Total: ");
+        console.log("Tip: " + c1.tip + "");
+        console.log("Total: " + c1.total() + "");
         console.log("");
         console.log("Bill for: " + c2.name + "");
         console.log("   " + c2.items[0].name + " - " + c2.items[0].price + "");
@@ -117,7 +132,8 @@ $(document).ready(function() {
         console.log("_______________________");
         console.log("Subtotal: " + c2.subtotal() + "");
         console.log("Taxes: " + c2.tax() + "");
-        console.log("Total: ");
+        console.log("Tip: " + c2.tip + "");
+        console.log("Total: " + c2.total() + "");
         console.log("");
         console.log("Bill for: " + c3.name + "");
         console.log("   " + c3.items[0].name + " - " + c3.items[0].price + "");
@@ -125,7 +141,8 @@ $(document).ready(function() {
         console.log("_______________________");
         console.log("Subtotal: " + c3.subtotal() + "");
         console.log("Taxes: " + c3.tax() + "");
-        console.log("Total: ");
+        console.log("Tip: " + c3.tip + "");
+        console.log("Total: " + c3.total() + "");
     };
 
     checkout();

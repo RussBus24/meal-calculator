@@ -2,18 +2,23 @@
 var Customer = function (name) {
     this.name = name;
     this.items = [];
-    this.tax = 0;
+    //this.tax = 0;
 }
 
 var MealItems = function(name, price, taxes) {
     this.name = name;
     this.price = price;
-    this.taxes = (this.price * .05).toFixed(2);
+    this.taxes = parseFloat((this.price * .05).toFixed(2));
+    //this.taxes = (this.price * .05).toFixed(2);
 }
 
 var viewBill = function() {
 
     console.log("The total for " + this.name + "'s meal including tax is " + sum + ".");
+
+}
+
+var totalBill = function() {
 
 }
 
@@ -29,14 +34,28 @@ Customer.prototype.subtotal = function() {
     return sum.toFixed(2);
 }
 
-Customer.prototype.taxes = function() {
-    var subTotal = 0;
+Customer.prototype.tax = function() {
+    var totalTax = 0;
     for (i = 0; i < this.items.length; i++) {
-        subTotal = subTotal + this.items[i].price;
+        totalTax = totalTax + this.items[i].taxes;
     }
-    var tax = subTotal * .05;
-    tax += this.tax;
-    return tax;
+    return totalTax;
+}
+
+Customer.prototype.tips = function() {
+
+}
+
+Customer.prototype.total = function() {
+    var totalCost = 0;
+    var foodCost = 0;
+    var foodTax = 0;
+    for (i = 0; i < this.items.length; i++) {
+        foodCost = foodCost + this.items[i].price;
+        foodTax = foodTax + this.items[i].taxes;
+    }
+    totalCost = foodCost + foodTax;
+    return totalCost;
 }
 
 Customer.prototype.totalDishes = function() {
@@ -89,7 +108,7 @@ $(document).ready(function() {
         console.log("   " + c1.items[1].name + " - " + c1.items[1].price + "");
         console.log("_______________________");
         console.log("Subtotal: " + c1.subtotal() + "");
-        console.log("Taxes: ");
+        console.log("Taxes: " + c1.tax() + "");
         console.log("Total: ");
         console.log("");
         console.log("Bill for: " + c2.name + "");
@@ -97,7 +116,7 @@ $(document).ready(function() {
         console.log("   " + c2.items[1].name + " - " + c2.items[1].price + "");
         console.log("_______________________");
         console.log("Subtotal: " + c2.subtotal() + "");
-        console.log("Taxes: ");
+        console.log("Taxes: " + c2.tax() + "");
         console.log("Total: ");
         console.log("");
         console.log("Bill for: " + c3.name + "");
@@ -105,7 +124,7 @@ $(document).ready(function() {
         console.log("   " + c3.items[1].name + " - " + c3.items[1].price + "");
         console.log("_______________________");
         console.log("Subtotal: " + c3.subtotal() + "");
-        console.log("Taxes: ");
+        console.log("Taxes: " + c3.tax() + "");
         console.log("Total: ");
     };
 

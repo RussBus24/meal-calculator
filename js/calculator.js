@@ -22,6 +22,24 @@ var totalBill = function() {
 
 }
 
+Customer.prototype.billDisplayName = function() {
+    return console.log("Bill for: " + this.name + "");
+}
+
+Customer.prototype.billDisplayMeal = function() {
+    for (i = 0; i < this.items.length; i ++) {
+        console.log("   " + this.items[i].name + " - " + this.items[i].price + "");
+    }
+}
+
+Customer.prototype.billDisplayTotals = function() {
+    console.log("Subtotal: " + this.subtotal() + "");
+    console.log("Taxes: " + this.tax() + "");
+    console.log("Tip: " + this.tip + "");
+    console.log("Total: " + this.total() + "");
+    console.log("");
+}
+
 Customer.prototype.add = function(item) {
     this.items.push(item);
 }

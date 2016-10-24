@@ -27,12 +27,13 @@ Customer.prototype.billDisplayName = function() {
 }
 
 Customer.prototype.billDisplayMeal = function() {
-    for (i = 0; i < this.items.length; i ++) {
+    for (i = 0; i < this.items.length; i++) {
         console.log("   " + this.items[i].name + " - " + this.items[i].price + "");
     }
 }
 
 Customer.prototype.billDisplayTotals = function() {
+    console.log("_______________________");
     console.log("Subtotal: " + this.subtotal() + "");
     console.log("Taxes: " + this.tax() + "");
     console.log("Tip: " + this.tip + "");
@@ -121,46 +122,20 @@ c1.tips();
 c2.tips();
 c3.tips();
 
-/*console.log("Tonight, we have diners: " + c1.name + ", " + c2.name + " and " + c3.name + ".");
-console.log("For " + c1.name + ", the following items were ordered: " + c1.items[0].name + " and " + c1.items[1].name + ".");
-console.log("The cost for these items are $" + c1.items[0].price + " and $" + c1.items[1].price + " respectively.");
-console.log("For " + c2.name + ", the following items were ordered: " + c2.items[0].name + " and " + c2.items[1].name + ".");
-console.log("The cost for these items are $" + c2.items[0].price + " and $" + c2.items[1].price + " respectively.");
-console.log("Finally, for " + c3.name + ", the following items were ordered: " + c3.items[0].name + " and " + c3.items[1].name + ".")
-console.log("The cost for these items are $" + c3.items[0].price + " and $" + c3.items[1].price + " respectively.");
-*/
-
 $(document).ready(function() {
 
     function checkout() {
         console.log("Hello! Please see your bill breakdown below:");
         console.log("");
-        console.log("Bill for: " + c1.name + "");
-        console.log("   " + c1.items[0].name + " - " + c1.items[0].price + "");
-        console.log("   " + c1.items[1].name + " - " + c1.items[1].price + "");
-        console.log("_______________________");
-        console.log("Subtotal: " + c1.subtotal() + "");
-        console.log("Taxes: " + c1.tax() + "");
-        console.log("Tip: " + c1.tip + "");
-        console.log("Total: " + c1.total() + "");
-        console.log("");
-        console.log("Bill for: " + c2.name + "");
-        console.log("   " + c2.items[0].name + " - " + c2.items[0].price + "");
-        console.log("   " + c2.items[1].name + " - " + c2.items[1].price + "");
-        console.log("_______________________");
-        console.log("Subtotal: " + c2.subtotal() + "");
-        console.log("Taxes: " + c2.tax() + "");
-        console.log("Tip: " + c2.tip + "");
-        console.log("Total: " + c2.total() + "");
-        console.log("");
-        console.log("Bill for: " + c3.name + "");
-        console.log("   " + c3.items[0].name + " - " + c3.items[0].price + "");
-        console.log("   " + c3.items[1].name + " - " + c3.items[1].price + "");
-        console.log("_______________________");
-        console.log("Subtotal: " + c3.subtotal() + "");
-        console.log("Taxes: " + c3.tax() + "");
-        console.log("Tip: " + c3.tip + "");
-        console.log("Total: " + c3.total() + "");
+        c1.billDisplayName();
+        c1.billDisplayMeal();
+        c1.billDisplayTotals();
+        c2.billDisplayName();
+        c2.billDisplayMeal();
+        c2.billDisplayTotals();
+        c3.billDisplayName();
+        c3.billDisplayMeal();
+        c3.billDisplayTotals();
     };
 
     checkout();

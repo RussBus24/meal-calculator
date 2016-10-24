@@ -12,12 +12,6 @@ var MealItems = function(name, price, taxes) {
     this.taxes = parseFloat((this.price * .05).toFixed(2));
 }
 
-var viewBill = function() {
-
-    console.log("The total for " + this.name + "'s meal including tax is " + sum + ".");
-
-}
-
 var totalBill = function() {
 
 }
